@@ -566,6 +566,7 @@ public class ChangeApiRestClientTest {
         EasyMock.verify(gerritRestClient, changesParser);
     }
 
+
     @Test
     public void testChangeGetOnGerrit214() throws Exception {
         String expectedChangeId = "myProject~master~I8473b95934b5732ac55d26311a706c9c2bde9940";
