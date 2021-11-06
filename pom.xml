@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.urswolfer.gerrit.client.rest</groupId>
   <artifactId>gerrit-rest-java-client</artifactId>
-  <version>0.9.3</version>
+  <version>0.9.3.0.cosium-SNAPSHOT</version>
 
   <name>gerrit-rest-java-client</name>
   <description>Java REST client for Gerrit Code Review API.</description>
@@ -31,9 +31,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git@github.com:uwolfer/gerrit-rest-java-client.git</connection>
-    <developerConnection>scm:git:git@github.com:uwolfer/gerrit-rest-java-client.git</developerConnection>
-    <url>git@github.com:uwolfer/gerrit-rest-java-client.git</url>
+    <connection>scm:git:git@github.com:Cosium/gerrit-rest-java-client.git</connection>
+    <developerConnection>scm:git:git@github.com:Cosium/gerrit-rest-java-client.git</developerConnection>
+    <url>git@github.com:Cosium/gerrit-rest-java-client.git</url>
   </scm>
 
   <properties>
@@ -111,6 +111,25 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <pushChanges>false</pushChanges>
+          <localCheckout>true</localCheckout>
+          <!-- Goals run during the prepare step. Default value is clean verify which does 2 builds during a release -->
+          <preparationGoals>clean</preparationGoals>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.1</version>
+        <configuration>
+          <failOnError>false</failOnError>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
@@ -154,75 +173,14 @@
     </plugins>
   </build>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>2.4</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.10.3</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.5</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>1.6.5</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
   <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
     <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>nexus-cosium-dev-releases</id>
+      <url>https://nexus.cosium.dev/repository/maven-releases/</url>
     </repository>
+    <snapshotRepository>
+      <id>nexus-cosium-dev-snapshots</id>
+      <url>https://nexus.cosium.dev/repository/maven-snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
 </project>
