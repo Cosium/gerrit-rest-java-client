@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.urswolfer.gerrit.client.rest</groupId>
   <artifactId>gerrit-rest-java-client</artifactId>
-  <version>0.9.3.2.cosium</version>
+  <version>0.9.3.3.cosium-SNAPSHOT</version>
 
   <name>gerrit-rest-java-client</name>
   <description>Java REST client for Gerrit Code Review API.</description>
@@ -33,7 +33,7 @@
     <connection>scm:git:git@github.com:Cosium/gerrit-rest-java-client.git</connection>
     <developerConnection>scm:git:git@github.com:Cosium/gerrit-rest-java-client.git</developerConnection>
     <url>git@github.com:Cosium/gerrit-rest-java-client.git</url>
-    <tag>gerrit-rest-java-client-0.9.3.2.cosium</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
