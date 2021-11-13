@@ -219,32 +219,6 @@ public class ChangeApiRestClientTest {
     }
 
     @Test
-    public void testRevertChange() throws Exception {
-        GerritRestClient gerritRestClient = getGerritRestClient(
-            "/changes/myProject~master~I8473b95934b5732ac55d26311a706c9c2bde9940/revert",
-            "{\"notify\":\"ALL\"}"
-        );
-        ChangesRestClient changesRestClient = getChangesRestClient(gerritRestClient);
-        changesRestClient.id("myProject~master~I8473b95934b5732ac55d26311a706c9c2bde9940").revert();
-
-        EasyMock.verify(gerritRestClient);
-    }
-
-    @Test
-    public void testRevertChangeWithMessage() throws Exception {
-        GerritRestClient gerritRestClient = getGerritRestClient(
-            "/changes/myProject~master~I8473b95934b5732ac55d26311a706c9c2bde9940/revert",
-            "{\"message\":\"Change need revert.\",\"notify\":\"ALL\"}"
-        );
-        ChangesRestClient changesRestClient = getChangesRestClient(gerritRestClient);
-        RevertInput revertInput = new RevertInput();
-        revertInput.message = "Change need revert.";
-        changesRestClient.id("myProject~master~I8473b95934b5732ac55d26311a706c9c2bde9940").revert(revertInput);
-
-        EasyMock.verify(gerritRestClient);
-    }
-
-    @Test
     public void testSuggestReviewers() throws Exception {
         JsonElement jsonElement = EasyMock.createMock(JsonElement.class);
         GerritRestClient gerritRestClient = new GerritRestClientBuilder()

@@ -174,7 +174,8 @@ public class ChangeApiRestClient extends ChangeApi.NotImplemented implements Cha
     public ChangeApi revert(RevertInput revertInput) throws RestApiException {
         String request = getRequestPath() + "/revert";
         String json = gerritRestClient.getGson().toJson(revertInput);
-        gerritRestClient.postRequest(request, json);
+        ChangeInfo newChangeInfo = changesParser
+            .parseSingleChangeInfo(gerritRestClient.postRequest(request, json));
         return new ChangeApiRestClient(gerritRestClient,
             changesRestClient,
             changesParser,
@@ -192,7 +193,7 @@ public class ChangeApiRestClient extends ChangeApi.NotImplemented implements Cha
             mergeableInfoParser,
             actionInfoParser,
             reviewInfoParser,
-            id);
+            newChangeInfo.id);
     }
 
     @Override
